@@ -16,6 +16,12 @@ class Imagem
         $nomeArquivo = $this->arquivo['name'];
         $novoNomeArquivo = uniqid();
         $extensao = strtolower(pathinfo($nomeArquivo, PATHINFO_EXTENSION));
+        
+        //verificar extensao
+        if ($extensao !== 'jpg' and $extensao !== 'png') {
+            return '';
+        }
+
         $pasta = "../imagens/";
         move_uploaded_file($this->arquivo["tmp_name"], $pasta . $novoNomeArquivo . "." . $extensao);
         $localArquivo = $novoNomeArquivo . "." . $extensao;
